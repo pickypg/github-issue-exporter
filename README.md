@@ -2,6 +2,49 @@
 
 Simple Groovy-based Issue Exporter for GitHub
 
+## Example Output
+
+This is example out from running an issue search for: `"repo:elastic/elasticsearch" "type:issue" "is:open" "label::Analysis" "label:discuss"`. It would be written to a file named `8235.txt`.
+
+```
+Issue # 8235 (https://github.com/elastic/elasticsearch/issues/8235)
+Reporter: MarcusSjolin (Marcus Sjölin)
+Posted: 2014-10-27 06:10:38
+Title: Compound words filter operator
+Body:
+
+# Compound words
+### Ranking and operator type issue
+
+Given the keyword "shoerack" was misspelled into one word, then I would expect it to be split into:
+
+    "shoerack", "shoe" and "rack"
+
+Using this compound word list:
+
+    ["shoe", "rack"]
+
+This all works fine. Testing the analyzer returns the above as expected. When I continue to perform the search after this the keywords appear to be searched this way, when I have the operator set on the multi_match query to be AND:
+
+    "shoerack" || "shoe" || "rack"
+
+I would like these keywords to act as they are searched for this way:
+
+    "shoerack" || ("shoe" && "rack")
+
+I would like the second argument to be ranked separately
+
+I'm looking for a way to set up an operator in the filter itself to be AND, or maybe it isn't aware at all that the two or more keywords belong together.
+
+I think this might be a feature request or enhancement, however it might be doable already, just that I have not found a solution to it.
+
+Thanks
+/Marcus
+
+---------------------
+Comments (0)
+```
+
 # Requirements
 
 - GitHub account
